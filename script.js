@@ -146,9 +146,42 @@ function selectAnswer(e) {
   const isCorrect = selectedBtn.dataset.correct === "true";
   if (isCorrect) {
     selectedBtn.classList.add("correct");
+    score++;
   } else {
     selectedBtn.classList.add("incorrect");
   }
+
+  Array.from(answerButton.children).forEach((button) => {
+    if (button.dataset.correct === "true") {
+      button.classList.add("correct");
+    }
+    button.disabled = "true";
+  });
+  nextButton.style.display = "block";
 }
+
+function showScore() {
+  resetState();
+  questionElement.innerHTML = `You Scored ${score} out of ${question.length}!`;
+  nextButton.innerHTML = "Play Again";
+  nextButton.style.display = "block";
+}
+
+function handleNextButton() {
+  currQuestionIndex++;
+  if (currQuestionIndex < question.length) {
+    showQuestion();
+  } else {
+    showScore();
+  }
+}
+
+nextButton.addEventListener("click", () => {
+  if (currQuestionIndex < question.length) {
+    handleNextButton();
+  } else {
+    quiz();
+  }
+});
 
 quiz();
