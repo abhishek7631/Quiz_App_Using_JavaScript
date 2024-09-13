@@ -185,3 +185,15 @@ nextButton.addEventListener("click", () => {
 });
 
 quiz();
+
+//  ********************
+
+nextButton.addEventListener("click", () => {
+  if (currQuestionIndex < question.length) {
+    handleNextButton();
+  } else {
+    quiz();
+  }
+});
+
+quiz();
