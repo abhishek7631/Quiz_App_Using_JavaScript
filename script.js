@@ -185,5 +185,3 @@ nextButton.addEventListener("click", () => {
 });
 
 quiz();
-
-//  ********************
